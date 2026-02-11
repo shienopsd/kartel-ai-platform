@@ -8,6 +8,7 @@ import SearchBar from "@/components/marketplace/SearchBar";
 import SortDropdown from "@/components/marketplace/SortDropdown";
 import ProductGrid from "@/components/marketplace/ProductGrid";
 import DownloadProgressBar from "@/components/download/DownloadProgressBar";
+import EmailCaptureModal from "@/components/modals/EmailCaptureModal";
 import { getProducts, getCategories, filterProducts, sortProducts } from "@/lib/products";
 import { SortOption, Product } from "@/types";
 import { useDownloadContext } from "@/contexts/DownloadContext";
@@ -17,7 +18,13 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [sortOption, setSortOption] = useState<SortOption>("date-newest");
 
-  const { startDownload } = useDownloadContext();
+  const {
+    startDownload,
+    showEmailModal,
+    pendingProduct,
+    handleEmailSubmit,
+    closeEmailModal
+  } = useDownloadContext();
 
   // Get all products and categories
   const allProducts = getProducts();
@@ -104,6 +111,14 @@ export default function Home() {
 
       <Footer />
       <DownloadProgressBar />
+
+      {/* Email Capture Modal */}
+      <EmailCaptureModal
+        isOpen={showEmailModal}
+        onClose={closeEmailModal}
+        onSubmit={handleEmailSubmit}
+        productTitle={pendingProduct?.title || ""}
+      />
     </div>
   );
 }
