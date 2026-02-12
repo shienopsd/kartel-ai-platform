@@ -29,7 +29,7 @@ export default function ProductGrid({ products, onDownload }: ProductGridProps) 
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" style={{ maxWidth: "1400px", margin: "0 auto" }}>
       {products.map((product) => (
         <ProductCard
           key={product.id}

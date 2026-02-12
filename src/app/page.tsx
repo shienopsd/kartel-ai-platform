@@ -66,6 +66,7 @@ export default function Home() {
 
         {/* Main Content */}
         <main className="flex-1 p-8">
+          <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           {/* Hero Section */}
           <div className="mb-12 text-center">
             <h1
@@ -106,6 +107,7 @@ export default function Home() {
             products={filteredAndSortedProducts}
             onDownload={handleDownload}
           />
+          </div>
         </main>
       </div>
 
