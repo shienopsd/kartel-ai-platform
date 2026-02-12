@@ -8,6 +8,7 @@ interface SidebarProps {
   products: Product[];
   selectedCategory: string | null;
   onSelectCategory: (categoryName: string | null) => void;
+  hideTitle?: boolean;
 }
 
 export default function Sidebar({
@@ -15,6 +16,7 @@ export default function Sidebar({
   products,
   selectedCategory,
   onSelectCategory,
+  hideTitle = false,
 }: SidebarProps) {
   // Filter out placeholder products
   const realProducts = products.filter(
@@ -39,12 +41,14 @@ export default function Sidebar({
         overflowY: "auto",
       }}
     >
-      <h2
-        className="text-lg font-bold mb-6"
-        style={{ color: "var(--foreground)" }}
-      >
-        Categories
-      </h2>
+      {!hideTitle && (
+        <h2
+          className="text-lg font-bold mb-6"
+          style={{ color: "var(--foreground)" }}
+        >
+          Categories
+        </h2>
+      )}
 
       <div className="space-y-2" style={{ position: "relative", zIndex: 10 }}>
         {/* All Products */}

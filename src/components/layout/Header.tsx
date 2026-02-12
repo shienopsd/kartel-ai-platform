@@ -2,9 +2,13 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Linkedin, Instagram } from "lucide-react";
+import { Linkedin, Instagram, Menu } from "lucide-react";
 
-export default function Header() {
+interface HeaderProps {
+  onMenuToggle?: () => void;
+}
+
+export default function Header({ onMenuToggle }: HeaderProps) {
   return (
     <header
       className="sticky top-0 z-50 border-b"
@@ -14,9 +18,18 @@ export default function Header() {
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center -ml-6">
+        <div className="flex items-center justify-between h-14 md:h-16">
+          {/* Mobile Menu Button + Logo */}
+          <div className="flex items-center gap-2 -ml-2 md:-ml-6">
+            {/* Hamburger Menu - Mobile Only */}
+            <button
+              onClick={onMenuToggle}
+              className="p-2 rounded-lg transition-colors hover:bg-white/10 md:hidden"
+              aria-label="Open menu"
+            >
+              <Menu size={24} style={{ color: "var(--foreground)" }} />
+            </button>
+
             <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
               <Image
                 src="/kartel-labs-new.png"
@@ -24,18 +37,19 @@ export default function Header() {
                 width={1500}
                 height={551}
                 priority
-                className="h-[60px] w-auto"
+                className="h-[40px] md:h-[60px] w-auto"
               />
             </Link>
           </div>
 
           {/* Navigation and Social Links */}
-          <div className="flex items-center gap-6 ml-auto">
+          <div className="flex items-center gap-4 md:gap-6 ml-auto">
+            {/* Kartel AI Logo - Hidden on small mobile */}
             <Link
               href="https://www.kartel.ai/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center transition-opacity hover:opacity-70"
+              className="hidden sm:flex items-center transition-opacity hover:opacity-70"
               aria-label="Kartel AI Main Site"
             >
               <Image
@@ -43,11 +57,11 @@ export default function Header() {
                 alt="Kartel AI"
                 width={116}
                 height={20}
-                className="h-5 w-auto"
+                className="h-4 md:h-5 w-auto"
               />
             </Link>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 md:gap-4">
               <Link
                 href="https://www.linkedin.com/company/105327048/admin/dashboard/"
                 target="_blank"
@@ -55,7 +69,7 @@ export default function Header() {
                 className="transition-opacity hover:opacity-70"
                 aria-label="LinkedIn"
               >
-                <Linkedin size={20} style={{ color: "var(--foreground)" }} />
+                <Linkedin size={18} className="md:w-5 md:h-5" style={{ color: "var(--foreground)" }} />
               </Link>
 
               <Link
@@ -65,7 +79,7 @@ export default function Header() {
                 className="transition-opacity hover:opacity-70"
                 aria-label="Instagram"
               >
-                <Instagram size={20} style={{ color: "var(--foreground)" }} />
+                <Instagram size={18} className="md:w-5 md:h-5" style={{ color: "var(--foreground)" }} />
               </Link>
 
               <Link
@@ -76,10 +90,11 @@ export default function Header() {
                 aria-label="X (Twitter)"
               >
                 <svg
-                  width="20"
-                  height="20"
+                  width="18"
+                  height="18"
                   viewBox="0 0 24 24"
                   fill="currentColor"
+                  className="md:w-5 md:h-5"
                   style={{ color: "var(--foreground)" }}
                 >
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
