@@ -8,9 +8,10 @@ import { formatDistanceToNow } from "date-fns";
 interface ProductCardProps {
   product: Product;
   onDownload: (product: Product) => void;
+  onClick?: (product: Product) => void;
 }
 
-export default function ProductCard({ product, onDownload }: ProductCardProps) {
+export default function ProductCard({ product, onDownload, onClick }: ProductCardProps) {
   const isPlaceholder = !product.title || product.id.startsWith("placeholder");
   const formattedDate = !isPlaceholder
     ? formatDistanceToNow(new Date(product.dateAdded), {
@@ -59,7 +60,7 @@ export default function ProductCard({ product, onDownload }: ProductCardProps) {
 
   return (
     <div
-      className="group relative overflow-hidden rounded-lg border transition-all duration-300 hover:scale-[1.02]"
+      className="group relative overflow-hidden rounded-lg border transition-all duration-300 hover:scale-[1.02] cursor-pointer"
       style={{
         background: "var(--dark-surface)",
         borderColor: "var(--dark-border)",
@@ -71,6 +72,7 @@ export default function ProductCard({ product, onDownload }: ProductCardProps) {
         isolation: "isolate",
         transition: "all 0.3s ease, box-shadow 0.3s ease",
       }}
+      onClick={() => onClick?.(product)}
       onMouseEnter={(e) => {
         e.currentTarget.style.boxShadow = "0 15px 50px -10px rgba(0, 0, 0, 0.6)";
       }}
@@ -137,8 +139,11 @@ export default function ProductCard({ product, onDownload }: ProductCardProps) {
 
         {/* Download Button */}
         <button
-          onClick={() => onDownload(product)}
-          className="w-full py-2.5 px-4 rounded-md font-medium text-white button-hover transition-all duration-700 flex items-center justify-center gap-2"
+          onClick={(e) => {
+            e.stopPropagation();
+            onDownload(product);
+          }}
+          className="w-full py-2.5 px-4 rounded-md font-medium text-white button-hover cursor-pointer flex items-center justify-center gap-2"
           style={{
             background: "linear-gradient(135deg, #1B2A4E 0%, #6366F1 100%)",
           }}

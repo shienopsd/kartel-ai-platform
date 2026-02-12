@@ -3,16 +3,21 @@
     {
       "id": "plugin-002",
       "title": "Adobe Premiere | Kling 3.0 Plugin",
-      "description": "Plugin that allows for users to generate Kling 3.0 videos directly into Adobe Premiere.",
+      "description": "Plugin that allows for users to generate Kling 3.0 videos directly into Adobe Premiere. Seamlessly integrate AI-powered video generation into your editing workflow without leaving your timeline. Generate B-roll, visual effects, transitions, and more using natural language prompts.",
       "category": "Plugins",
       "thumbnail": "/kling-pr.png",
       "downloadUrl": "https://github.com/shienopsd/kartel-ai-marketplace-files/releases/download/v1.0.0/securehub-download.CW10_Kartel_AdGreetz.zip",
       "fileName": "securehub-download.CW10_Kartel_AdGreetz.zip",
       "dateAdded": "2026-02-03T16:45:00Z",
       "downloads": 124,
-      "tags": ["ai", "content", "marketing", "gpt"],
+      "tags": ["ai", "video", "premiere", "kling", "content creation"],
       "version": "1.5.2",
-      "fileSize": "67 KB"
+      "fileSize": "67 KB",
+      "platform": "both",
+      "requirements": "Adobe Premiere Pro 2024 or later, Kling API key (free tier available)",
+      "author": "Kartel AI Team",
+      "installInstructions": "1. Extract the ZIP file to your Premiere Pro plugins folder\n2. Restart Premiere Pro\n3. Find Kling 3.0 in Window > Extensions\n4. Enter your Kling API key to activate",
+      "changelog": "Added support for Kling 3.0 API, improved rendering speed by 40%, new preset templates for common video styles"
     },
     {
       "id": "placeholder-001",

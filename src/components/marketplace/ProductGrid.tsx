@@ -6,9 +6,10 @@ import ProductCard from "./ProductCard";
 interface ProductGridProps {
   products: Product[];
   onDownload: (product: Product) => void;
+  onProductClick?: (product: Product) => void;
 }
 
-export default function ProductGrid({ products, onDownload }: ProductGridProps) {
+export default function ProductGrid({ products, onDownload, onProductClick }: ProductGridProps) {
   if (products.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-20">
@@ -35,6 +36,7 @@ export default function ProductGrid({ products, onDownload }: ProductGridProps) 
           key={product.id}
           product={product}
           onDownload={onDownload}
+          onClick={onProductClick}
         />
       ))}
     </div>

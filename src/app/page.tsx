@@ -9,6 +9,7 @@ import SortDropdown from "@/components/marketplace/SortDropdown";
 import ProductGrid from "@/components/marketplace/ProductGrid";
 import DownloadProgressBar from "@/components/download/DownloadProgressBar";
 import EmailCaptureModal from "@/components/modals/EmailCaptureModal";
+import ProductDetailModal from "@/components/modals/ProductDetailModal";
 import { getProducts, getCategories, filterProducts, sortProducts } from "@/lib/products";
 import { SortOption, Product } from "@/types";
 import { useDownloadContext } from "@/contexts/DownloadContext";
@@ -17,6 +18,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [sortOption, setSortOption] = useState<SortOption>("date-newest");
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const {
     startDownload,
@@ -38,6 +40,10 @@ export default function Home() {
 
   const handleDownload = (product: Product) => {
     startDownload(product);
+  };
+
+  const handleProductClick = (product: Product) => {
+    setSelectedProduct(product);
   };
 
   return (
@@ -65,12 +71,12 @@ export default function Home() {
         </div>
 
         {/* Main Content */}
-        <main className="flex-1 p-8">
+        <main className="flex-1 p-4 pt-6">
           <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           {/* Hero Section */}
-          <div className="mb-12 text-center">
+          <div className="mb-4 text-center">
             <h1
-              className="text-5xl font-bold mb-4"
+              className="text-3xl font-bold mb-1"
               style={{
                 color: "#ffffff",
                 textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
@@ -79,23 +85,22 @@ export default function Home() {
               Workflows & Plugins
             </h1>
             <p
-              className="text-lg opacity-70 max-w-2xl mx-auto"
+              className="text-sm opacity-70 max-w-2xl mx-auto"
               style={{ color: "var(--foreground)" }}
             >
               Free workflows and plugins created by Kartel AI generative engineers.
-              Enhance your automation and streamline your processes.
             </p>
           </div>
 
           {/* Search and Sort Bar */}
-          <div className="flex flex-col md:flex-row items-center gap-4 mb-8">
+          <div className="flex flex-col md:flex-row items-center gap-3 mb-4">
             <SearchBar onSearch={setSearchQuery} />
             <SortDropdown value={sortOption} onChange={setSortOption} />
           </div>
 
           {/* Results Count */}
           <div
-            className="mb-6 text-sm opacity-60"
+            className="mb-3 text-sm opacity-60"
             style={{ color: "var(--foreground)" }}
           >
             Showing {filteredAndSortedProducts.length} of {allProducts.length}{" "}
@@ -106,6 +111,7 @@ export default function Home() {
           <ProductGrid
             products={filteredAndSortedProducts}
             onDownload={handleDownload}
+            onProductClick={handleProductClick}
           />
           </div>
         </main>
@@ -120,6 +126,17 @@ export default function Home() {
         onClose={closeEmailModal}
         onSubmit={handleEmailSubmit}
         productTitle={pendingProduct?.title || ""}
+      />
+
+      {/* Product Detail Modal */}
+      <ProductDetailModal
+        product={selectedProduct}
+        isOpen={!!selectedProduct}
+        onClose={() => setSelectedProduct(null)}
+        onDownload={(product) => {
+          setSelectedProduct(null);
+          handleDownload(product);
+        }}
       />
     </div>
   );

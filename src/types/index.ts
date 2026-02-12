@@ -11,6 +11,13 @@ export interface Product {
   tags: string[];
   version: string;
   fileSize: string;
+  // Extended details (optional)
+  platform?: "mac" | "windows" | "both";
+  requirements?: string;
+  author?: string;
+  lastUpdated?: string;
+  changelog?: string;
+  installInstructions?: string;
 }
 
 export interface Category {
