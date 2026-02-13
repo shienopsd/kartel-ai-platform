@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { X, Download, Monitor, Apple, Calendar, Package, FileText, User } from "lucide-react";
 import Image from "next/image";
 import { Product } from "@/types";
@@ -18,6 +19,18 @@ export default function ProductDetailModal({
   onClose,
   onDownload,
 }: ProductDetailModalProps) {
+  // Close modal on Escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [isOpen, onClose]);
+
   if (!isOpen || !product) return null;
 
   const formattedDate = formatDistanceToNow(new Date(product.dateAdded), {
