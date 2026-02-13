@@ -22,7 +22,7 @@ export default function ProductCard({ product, onDownload, onClick }: ProductCar
   if (isPlaceholder) {
     return (
       <div
-        className="relative overflow-hidden rounded-lg border"
+        className="hidden md:block relative overflow-hidden rounded-lg border"
         style={{
           background: "#1a1a1a",
           borderColor: "var(--dark-border)",
