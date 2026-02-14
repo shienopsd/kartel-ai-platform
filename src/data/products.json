@@ -6,7 +6,7 @@
       "description": "Kling 3.0 for DaVinci Resolve brings AI-powered Image-to-Video and Video-to-Video transformation directly into professional post-production workflows. Powered by Kling AI's O3 Pro model via fal.ai, the plugin enables editors to generate motion from still images and transform existing footage using natural language prompts — fully integrated inside Resolve. Available as an OFX effect, Workflow integration panel, Fusion node, and standalone application.",
       "category": "Plugins",
       "thumbnail": "/kling-davinci-v2.png",
-      "downloadUrl": "https://github.com/shienopsd/kartel-ai-marketplace-files/releases/download/v1.0.0/Kartel-Labs_Kling-3.0-Pro-1.7.5.dmg",
+      "downloadUrl": "https://github.com/shienopsd/kartel-ai-marketplace-files/releases/download/Kartel-Labs_Kling-3.0-Pro-1.7.5/Kartel-Labs_Kling-3.0-Pro-1.7.5.dmg",
       "fileName": "Kartel-Labs_Kling-3.0-Pro-1.7.5.dmg",
       "dateAdded": "2026-02-10T00:09:23Z",
       "downloads": 124,
