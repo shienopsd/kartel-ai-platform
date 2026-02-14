@@ -2,7 +2,7 @@
   "products": [
     {
       "id": "plugin-002",
-      "title": "Kartel Labs: Kling 3.0 DaVinci Resolve Plugin / Standalone App",
+      "title": "Kling 3.0 DaVinci Resolve Plugin / Standalone App",
       "description": "Kling 3.0 for DaVinci Resolve brings AI-powered Image-to-Video and Video-to-Video transformation directly into professional post-production workflows. Powered by Kling AI's O3 Pro model via fal.ai, the plugin enables editors to generate motion from still images and transform existing footage using natural language prompts — fully integrated inside Resolve. Available as an OFX effect, Workflow integration panel, Fusion node, and standalone application.",
       "category": "Plugins",
       "thumbnail": "/kling-davinci-v2.png",
