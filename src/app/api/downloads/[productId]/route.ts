@@ -31,7 +31,14 @@ export async function GET(
 
     // Stream the file to the client
     const headers = new Headers();
-    headers.set("Content-Type", "application/zip");
+
+    // Set appropriate Content-Type based on file extension
+    const fileExt = product.fileName.toLowerCase().split('.').pop();
+    const contentType = fileExt === 'dmg'
+      ? 'application/x-apple-diskimage'
+      : 'application/zip';
+
+    headers.set("Content-Type", contentType);
     headers.set(
       "Content-Disposition",
       `attachment; filename="${product.fileName}"`

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { X, Download, Monitor, Apple, Calendar, Package, FileText, User } from "lucide-react";
 import Image from "next/image";
 import { Product } from "@/types";
@@ -19,19 +19,56 @@ export default function ProductDetailModal({
   onClose,
   onDownload,
 }: ProductDetailModalProps) {
+  // State for managing exit animation
+  const [isClosing, setIsClosing] = useState(false);
+  const [shouldRender, setShouldRender] = useState(false);
+
+  // Sync shouldRender with isOpen prop
+  useEffect(() => {
+    if (isOpen) {
+      setShouldRender(true);
+      setIsClosing(false);
+    }
+  }, [isOpen]);
+
+  // Unified close handler with animation
+  const handleClose = useCallback(() => {
+    if (isClosing) return; // Prevent multiple triggers
+
+    setIsClosing(true);
+
+    // Small delay to ensure exit classes are applied before triggering transition
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        // Add 'closing' class to trigger the transition
+        const backdrop = document.querySelector('.modal-backdrop-exit');
+        const content = document.querySelector('.modal-content-exit');
+        if (backdrop) backdrop.classList.add('closing');
+        if (content) content.classList.add('closing');
+      });
+    });
+
+    // Wait for animation to complete, then notify parent
+    setTimeout(() => {
+      setShouldRender(false);
+      setIsClosing(false);
+      onClose();
+    }, 300); // Match animation duration
+  }, [isClosing, onClose]);
+
   // Close modal on Escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
-        onClose();
+      if (e.key === "Escape" && isOpen && !isClosing) {
+        handleClose();
       }
     };
 
     document.addEventListener("keydown", handleEscape);
     return () => document.removeEventListener("keydown", handleEscape);
-  }, [isOpen, onClose]);
+  }, [isOpen, isClosing, handleClose]);
 
-  if (!isOpen || !product) return null;
+  if (!shouldRender || !product) return null;
 
   const formattedDate = formatDistanceToNow(new Date(product.dateAdded), {
     addSuffix: true,
@@ -77,14 +114,18 @@ export default function ProductDetailModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop"
+      className={`fixed inset-0 z-50 flex items-center justify-center p-4${
+        isClosing ? ' modal-backdrop-exit' : ' modal-backdrop'
+      }`}
       style={{
         backgroundColor: "rgba(0, 0, 0, 0.85)",
       }}
-      onClick={onClose}
+      onClick={handleClose}
     >
       <div
-        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl modal-content"
+        className={`relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl${
+          isClosing ? ' modal-content-exit' : ' modal-content'
+        }`}
         style={{
           background: "var(--dark-surface)",
           border: "1px solid var(--dark-border)",
@@ -93,7 +134,7 @@ export default function ProductDetailModal({
       >
         {/* Close button */}
         <button
-          onClick={onClose}
+          onClick={handleClose}
           className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition-colors z-10"
         >
           <X size={20} style={{ color: "var(--foreground)", opacity: 0.6 }} />
@@ -253,7 +294,7 @@ export default function ProductDetailModal({
               </h3>
               <p
                 className="text-sm leading-relaxed opacity-80"
-                style={{ color: "var(--foreground)" }}
+                style={{ color: "var(--foreground)", whiteSpace: "pre-line" }}
               >
                 {product.installInstructions}
               </p>
