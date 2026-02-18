@@ -84,6 +84,15 @@ body::after {
   box-sizing: border-box;
 }
 
+html {
+  background: var(--dark-bg);
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
+
 
 .button-hover {
   transition: all 100ms ease !important;
