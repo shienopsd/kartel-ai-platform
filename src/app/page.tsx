@@ -134,10 +134,10 @@ export default function Home() {
         )}
 
         {/* Main Content */}
-        <main className="flex-1 p-4 pt-6">
+        <main className="flex-1 p-4 pt-6 relative z-10">
           <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           {/* Hero Section */}
-          <div className="mb-4 text-center">
+          <div className="mb-4 text-center relative z-10">
             <h1
               className="text-2xl md:text-3xl font-bold mb-1"
               style={{
