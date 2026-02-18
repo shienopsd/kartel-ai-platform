@@ -20,11 +20,11 @@ export default function Header({ onMenuToggle }: HeaderProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 md:h-16">
           {/* Mobile & Desktop: Menu Button + Logo on left */}
-          <div className="flex items-center gap-2 -ml-2 md:-ml-6">
+          <div className="flex items-center gap-2 flex-shrink-0">
             {/* Hamburger Menu - Mobile Only */}
             <button
               onClick={onMenuToggle}
-              className="p-2 rounded-lg transition-colors hover:bg-white/10 md:hidden"
+              className="p-2 rounded-lg transition-colors hover:bg-white/10 md:hidden -ml-2"
               aria-label="Open menu"
             >
               <Menu size={24} style={{ color: "var(--foreground)" }} />

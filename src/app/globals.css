@@ -44,12 +44,11 @@ body {
   color: var(--foreground);
   font-family: var(--font-wix-madefor), "Wix Madefor Text", Helvetica, Arial, sans-serif;
   min-height: 100vh;
-  position: relative;
 }
 
 body::before {
   content: '';
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
