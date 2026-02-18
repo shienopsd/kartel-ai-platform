@@ -18,13 +18,13 @@ export default function Header({ onMenuToggle }: HeaderProps) {
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14 md:h-16">
+        <div className="flex items-center h-14 md:h-16 relative">
           {/* Mobile: Menu Button (left) + Centered Logo */}
-          <div className="flex items-center w-full md:w-auto">
+          <div className="flex items-center w-full md:hidden">
             {/* Hamburger Menu - Mobile Only */}
             <button
               onClick={onMenuToggle}
-              className="p-2 rounded-lg transition-colors hover:bg-white/10 md:hidden"
+              className="p-2 rounded-lg transition-colors hover:bg-white/10"
               aria-label="Open menu"
             >
               <Menu size={24} style={{ color: "var(--foreground)" }} />
@@ -33,7 +33,7 @@ export default function Header({ onMenuToggle }: HeaderProps) {
             {/* Mobile: Centered Logo */}
             <Link
               href="/"
-              className="flex items-center hover:opacity-80 transition-opacity md:ml-0 mx-auto md:mx-0"
+              className="flex items-center hover:opacity-80 transition-opacity mx-auto"
             >
               <Image
                 src="/kartel-labs-new.png"
@@ -41,12 +41,27 @@ export default function Header({ onMenuToggle }: HeaderProps) {
                 width={1500}
                 height={551}
                 priority
-                className="h-[40px] md:h-[60px] w-auto"
+                className="h-[40px] w-auto"
               />
             </Link>
           </div>
 
-          {/* Desktop: Navigation and Social Links - Hidden on mobile */}
+          {/* Desktop: Centered Logo */}
+          <Link
+            href="/"
+            className="hidden md:flex items-center hover:opacity-80 transition-opacity absolute left-1/2 transform -translate-x-1/2"
+          >
+            <Image
+              src="/kartel-labs-new.png"
+              alt="Kartel Labs"
+              width={1500}
+              height={551}
+              priority
+              className="h-[60px] w-auto"
+            />
+          </Link>
+
+          {/* Desktop: Social Links - Positioned on the right */}
           <div className="hidden md:flex items-center gap-4 md:gap-6 ml-auto">
             {/* Kartel AI Logo */}
             <Link

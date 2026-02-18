@@ -2,8 +2,6 @@
 
 import { Category, Product } from "@/types";
 import clsx from "clsx";
-import Link from "next/link";
-import Image from "next/image";
 
 interface SidebarProps {
   categories: Category[];
@@ -43,24 +41,6 @@ export default function Sidebar({
         overflowY: "auto",
       }}
     >
-      {/* Centered Logo - Desktop Only */}
-      {!hideTitle && (
-        <div className="flex justify-center mb-8">
-          <Link
-            href="/"
-            className="flex items-center hover:opacity-80 transition-opacity"
-          >
-            <Image
-              src="/kartel-labs-new.png"
-              alt="Kartel Labs"
-              width={1500}
-              height={551}
-              className="h-[60px] w-auto"
-            />
-          </Link>
-        </div>
-      )}
-
       {!hideTitle && (
         <h2
           className="text-lg font-bold mb-6"
