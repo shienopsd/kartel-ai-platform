@@ -17,10 +17,10 @@ export default function Header({ onMenuToggle }: HeaderProps) {
         borderColor: "var(--dark-border)",
       }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14 md:h-16">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 md:h-16 max-w-7xl mx-auto">
           {/* Mobile & Desktop: Menu Button + Logo on left */}
-          <div className="flex items-center gap-2 flex-shrink-0">
+          <div className="flex items-center gap-2 flex-shrink-0 md:absolute md:left-8">
             {/* Hamburger Menu - Mobile Only */}
             <button
               onClick={onMenuToggle}
