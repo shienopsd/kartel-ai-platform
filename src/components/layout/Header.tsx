@@ -19,8 +19,8 @@ export default function Header({ onMenuToggle }: HeaderProps) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 md:h-16">
-          {/* Mobile Menu Button + Logo */}
-          <div className="flex items-center gap-2 -ml-2 md:-ml-6">
+          {/* Mobile: Menu Button (left) + Centered Logo */}
+          <div className="flex items-center w-full md:w-auto">
             {/* Hamburger Menu - Mobile Only */}
             <button
               onClick={onMenuToggle}
@@ -30,7 +30,11 @@ export default function Header({ onMenuToggle }: HeaderProps) {
               <Menu size={24} style={{ color: "var(--foreground)" }} />
             </button>
 
-            <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
+            {/* Mobile: Centered Logo */}
+            <Link
+              href="/"
+              className="flex items-center hover:opacity-80 transition-opacity md:ml-0 mx-auto md:mx-0"
+            >
               <Image
                 src="/kartel-labs-new.png"
                 alt="Kartel Labs"
@@ -42,14 +46,14 @@ export default function Header({ onMenuToggle }: HeaderProps) {
             </Link>
           </div>
 
-          {/* Navigation and Social Links */}
-          <div className="flex items-center gap-4 md:gap-6 ml-auto">
-            {/* Kartel AI Logo - Hidden on small mobile */}
+          {/* Desktop: Navigation and Social Links - Hidden on mobile */}
+          <div className="hidden md:flex items-center gap-4 md:gap-6 ml-auto">
+            {/* Kartel AI Logo */}
             <Link
               href="https://www.kartel.ai/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex items-center transition-opacity hover:opacity-70"
+              className="flex items-center transition-opacity hover:opacity-70"
               aria-label="Kartel AI Main Site"
             >
               <Image
