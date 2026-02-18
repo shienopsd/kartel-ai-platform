@@ -17,20 +17,20 @@ export default function Header({ onMenuToggle }: HeaderProps) {
         borderColor: "var(--dark-border)",
       }}
     >
-      <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14 md:h-16 max-w-7xl mx-auto">
-          {/* Mobile & Desktop: Menu Button + Logo on left */}
-          <div className="flex items-center gap-2 flex-shrink-0 md:absolute md:left-8">
+      <div className="w-full">
+        <div className="flex items-center h-14 md:h-16">
+          {/* Mobile: Menu Button + Logo */}
+          <div className="flex items-center gap-2 md:hidden px-4">
             {/* Hamburger Menu - Mobile Only */}
             <button
               onClick={onMenuToggle}
-              className="p-2 rounded-lg transition-colors hover:bg-white/10 md:hidden -ml-2"
+              className="p-2 rounded-lg transition-colors hover:bg-white/10 -ml-2"
               aria-label="Open menu"
             >
               <Menu size={24} style={{ color: "var(--foreground)" }} />
             </button>
 
-            {/* Logo - Left aligned for both mobile and desktop */}
+            {/* Logo - Mobile */}
             <Link
               href="/"
               className="flex items-center hover:opacity-80 transition-opacity"
@@ -41,13 +41,30 @@ export default function Header({ onMenuToggle }: HeaderProps) {
                 width={1500}
                 height={551}
                 priority
-                className="h-[40px] md:h-[60px] w-auto"
+                className="h-[40px] w-auto"
               />
             </Link>
           </div>
 
-          {/* Desktop: Social Links - Positioned on the right, hidden on mobile */}
-          <div className="hidden md:flex items-center gap-4 md:gap-6 ml-auto">
+          {/* Desktop: Logo positioned to the right of sidebar (w-64 = 256px) */}
+          <div className="hidden md:flex items-center" style={{ marginLeft: "256px", paddingLeft: "2rem" }}>
+            <Link
+              href="/"
+              className="flex items-center hover:opacity-80 transition-opacity"
+            >
+              <Image
+                src="/kartel-labs-new.png"
+                alt="Kartel Labs"
+                width={1500}
+                height={551}
+                priority
+                className="h-[60px] w-auto"
+              />
+            </Link>
+          </div>
+
+          {/* Desktop: Social Links - Positioned on the right */}
+          <div className="hidden md:flex items-center gap-4 md:gap-6 ml-auto px-4 sm:px-6 lg:px-8">
             {/* Kartel AI Logo */}
             <Link
               href="https://www.kartel.ai/"
